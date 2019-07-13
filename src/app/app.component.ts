@@ -10,15 +10,26 @@ export class AppComponent implements OnInit{
 	title = 'Restful Tasks API';
 	tasks = [];
 	task1 = {};
-	showAll: boolean;
+	newTask: any;
 
   	constructor(private _httpService: HttpService){}
 
 	showTask1: boolean;
 
 	ngOnInit(){
-		this.showAll = false;
-		this.getTasksFromService();
+		//this.showAll = false;
+		//this.getTasksFromService();
+		this.newTask = {"title":"give your task a title", "desc": "describe your task"}
+	}
+
+	onSubmit(){
+		let observable = this._httpService.addTask(this.newTask);
+		console.log("here is the observable", observable);
+		observable.subscribe(data=>{
+			console.log("got post data", data);
+			this.newTask = {"title": "", "desc": ""}
+			console.log("empty?", this.newTask);
+		});
 	}
 
   	getTasksFromService(){
@@ -29,9 +40,6 @@ export class AppComponent implements OnInit{
 			console.log(this.tasks);
 		});
   	}
-	onButtonClickTasks(){
-		this.showAll=true;	
-	}
 	taskClick(task_id: String){
 		//console.log(`this tasks id is ${task_id}`)
 		this.showTask1=true;

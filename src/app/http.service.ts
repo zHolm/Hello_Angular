@@ -20,9 +20,10 @@ export class HttpService {
 	getTask(taskID){
 		return this._http.get('/tasks/'+taskID);
 	}
-	postToServer(num){
-		return this._http.post('/tasks',num);
-	}
 
+	addTask(newtask){
+		console.log("hitting service addTask with",newtask);
+		return this._http.post('/tasks/', newtask, {responseType: 'text'})
+	}
 }
 

@@ -7,10 +7,10 @@
 <div class="container" style="margin-left: 40%;">
 	<div>
 		<h3>Here are my Tasks</h3>
-		<button (click)="onButtonClickTasks()">Show all Tasks</button>
-		<div *ngIf="showAll"> 
+		<button (click)="getTasksFromService()">Show all Tasks</button>
+		<div > 
 			<ul>
-				<li *ngFor="let task of tasks">{{task.title}}
+				<li *ngFor="let task of tasks.reverse()">{{task.title}}
 					<button (click)="taskClick(task._id)">Show</button>
 				</li>
 			</ul>
@@ -21,6 +21,15 @@
 				<p *ngIf="task1.completed; else notShow" style="color: green;">Task complete</p>
 			</div>
 		</div>
+	</div>
+	<div>
+		<form (submit)="onSubmit()" class="postForm">
+		    <!-- use the json pipe to see how newTask changes in real time -->
+		    <p> {{ newTask | json }} </p>
+			<input type="text" name="newTask.title" [(ngModel)]="newTask.title" />
+			<input type="text" name="newTask.desc" [(ngModel)]="newTask.desc" />
+			<input type="submit" value="Create Task" />
+		</form>
 	</div>
 
 
