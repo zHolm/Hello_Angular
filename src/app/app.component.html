@@ -34,11 +34,7 @@
 					</li>
 				</ul>
 				<br>
-				<div *ngIf="showTask1">
-					<p>Task: {{task1.title}}</p>
-					<p>Description: {{task1.desc}}</p>
-					<p>Status: {{task1.completed}}</p>
-				</div>
+				<app-task *ngIf="showTask1" [taskClick]="task1"></app-task>
 			</div>
 		</div>
 	</div>
