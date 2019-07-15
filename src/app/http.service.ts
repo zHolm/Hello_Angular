@@ -25,5 +25,13 @@ export class HttpService {
 		console.log("hitting service addTask with",newtask);
 		return this._http.post('/tasks/', newtask, {responseType: 'text'})
 	}
+	deleteTask(taskID){
+		console.log('delete route ', '/tasks/'+taskID);
+		return this._http.delete('/tasks/'+taskID+'/');
+	}
+	updateTask(taskID, update_data){
+		console.log('update route');
+		return this._http.put('/tasks/'+taskID, update_data);
+	}
 }
 
